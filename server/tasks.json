@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1792069918685,
+        "title": "Testar In Progress",
+        "description": "Testar in progress med css",
+        "category": "web",
+        "priority": "high",
+        "status": "doing",
+        "dueDate": "2026-10-16"
+    },
+    {
+        "id": 1792157572025,
+        "title": "Testar Todo",
+        "description": "Testar todo med css",
+        "category": "web",
+        "priority": "high",
+        "status": "todo",
+        "dueDate": "2026-10-16"
+    },
+    {
+        "id": 1792157650275,
+        "title": "Testar Done",
+        "description": "Testar done med css",
+        "category": "web",
+        "priority": "high",
+        "status": "done",
+        "dueDate": "2026-10-16"
+    }
+]
