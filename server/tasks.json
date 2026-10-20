@@ -1,29 +1,29 @@
 [
-  {
-    "id": 1792069918685,
-    "title": "Testar In Progress",
-    "description": "Testar in progress med css",
-    "category": "web",
-    "priority": "high",
-    "status": "doing",
-    "dueDate": "2026-10-16"
-  },
-  {
-    "id": 1792157572025,
-    "title": "Testar Todo",
-    "description": "Testar todo med css",
-    "category": "web",
-    "priority": "high",
-    "status": "todo",
-    "dueDate": "2026-10-16"
-  },
-  {
-    "id": 1792157650275,
-    "title": "Testar Done",
-    "description": "Testar done med css",
-    "category": "web",
-    "priority": "high",
-    "status": "done",
-    "dueDate": "2026-10-16"
-  }
+    {
+        "id": 1792069918685,
+        "title": "Create autumn campaign",
+        "description": "Prepare images and copy for the autumn social media campaign.",
+        "category": "marketing",
+        "priority": "medium",
+        "status": "doing",
+        "dueDate": "2026-10-23"
+    },
+    {
+        "id": 1792157572025,
+        "title": "Update product descriptions",
+        "description": "Review and improve product descriptions for the webshop.",
+        "category": "ecommerce",
+        "priority": "high",
+        "status": "todo",
+        "dueDate": "2026-10-28"
+    },
+    {
+        "id": 1792157650275,
+        "title": "Update homepage layout",
+        "description": "Improve the homepage layout for mobile and desktop.",
+        "category": "web",
+        "priority": "low",
+        "status": "done",
+        "dueDate": "2026-10-18"
+    }
 ]
