@@ -1,32 +1,120 @@
-# React + TypeScript + Vite
+# Content Flow
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Content Flow is a responsive Kanban productivity tool for planning and managing content-related tasks.
 
-Currently, two official plugins are available:
+The application was created as the final project in the JavaScript 2 course at Grit Academy. It is built with React and TypeScript on the frontend and Node.js with Express on the backend.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Create new tasks
+- Edit existing tasks
+- Delete tasks
+- Move tasks between To Do, In Progress and Done
+- Add category, priority and due date to tasks
+- Store task data through a Node.js/Express backend
+- Responsive layout for desktop, tablet and mobile
+- Keyboard accessible forms and controls
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technologies
 
-## Expanding the Oxlint configuration
+### Frontend
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- React
+- TypeScript
+- Vite
+- CSS
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+### Backend
+
+- Node.js
+- Express
+- JSON file storage
+
+### Testing and code quality
+
+- Jest
+- Oxlint
+
+## Project Structure
+
+```text
+content-flow/
+├── server/
+│   ├── server.js
+│   └── tasks.json
+├── src/
+│   ├── components/
+│   ├── services/
+│   ├── types/
+│   ├── utils/
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   └── taskUtils.test.ts
+├── package.json
+└── README.md
+
+## Getting Started
+
+### Install frontend dependencies
+
+From the project root:
+
+```bash
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Start the backend
+
+Open a terminal and navigate to the server folder:
+
+```bash
+cd server
+npm install
+node server.js
+```
+
+The backend runs on:
+
+```text
+http://localhost:3000
+```
+
+### Start the frontend
+
+Open a second terminal in the project root and run:
+
+```bash
+npm run dev
+```
+
+The frontend runs on:
+
+```text
+http://localhost:5173
+```
+## Testing
+
+Unit tests are written with Jest.
+
+Run the tests from the project root:
+
+```bash
+npm test
+```
+
+## Code Quality
+
+Run Oxlint from the project root:
+
+```bash
+npm run lint
+```
+Create a production build with:
+
+```bash
+npm run build
+```
+## Deployment
+
+Deployment information will be added after the application has been published.

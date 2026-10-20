@@ -1,5 +1,3 @@
-// useState stores data that can change in the component
-// useEffect runs code when the component loads, such as fetching data
 import { useEffect, useState } from "react";
 
 import TaskCard from "./TaskCard";
@@ -15,47 +13,61 @@ import {
 // Filters tasks by their status for each Kanban column
 import { filterTasksByStatus } from "../utils/taskUtils";
 
+// Manages tasks and connects frontend with backend
 function KanbanBoard() {
-  // Stores the tasks fetched from the backend
+  // Stores tasks, loading state and possible errors
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  // Stores whether the tasks are currently being loaded
   const [isLoading, setIsLoading] = useState(true);
 
-  // Stores an error message if the tasks cannot be loaded
   const [error, setError] = useState("");
 
-  // Fetches tasks from the backend when the component loads
+  // Fetches tasks from backend when component loads
   useEffect(() => {
     getTasks()
       .then((data) => {
         setTasks(data);
         setIsLoading(false);
       })
-
       .catch(() => {
         setError("Failed to load tasks.");
         setIsLoading(false);
       });
   }, []);
 
-  // Creates a new task and adds the returned task to the state
+  // Creates new task and adds returned task to state
   function handleAddTask(newTask: Task) {
-    createTask(newTask).then((data) => setTasks([...tasks, data]));
+    createTask(newTask)
+      .then((data) => setTasks((currentTasks) => [...currentTasks, data]))
+      .catch(() => {
+        setError("Failed to create task.");
+      });
   }
 
-  // Deletes a task and removes it from the state
+  // Deletes task and removes it from state
   function handleDeleteTask(id: number) {
-    deleteTask(id).then(() => {
-      setTasks(tasks.filter((task) => task.id !== id));
-    });
+    deleteTask(id)
+      .then(() => {
+        setTasks((currentTasks) =>
+          currentTasks.filter((task) => task.id !== id),
+        );
+      })
+      .catch(() => {
+        setError("Failed to delete task.");
+      });
   }
 
   // Updates task status and updates state
   function handleStatusChange(id: number, newStatus: Task["status"]) {
-    updateTask(id, { status: newStatus }).then((updatedTask) => {
-      setTasks(tasks.map((task) => (task.id === id ? updatedTask : task)));
-    });
+    updateTask(id, { status: newStatus })
+      .then((updatedTask) => {
+        setTasks((currentTasks) =>
+          currentTasks.map((task) => (task.id === id ? updatedTask : task)),
+        );
+      })
+      .catch(() => {
+        setError("Failed to update task status.");
+      });
   }
 
   // Updates edited task and updates state
@@ -73,17 +85,23 @@ function KanbanBoard() {
       category: newCategory,
       priority: newPriority,
       dueDate: newDueDate,
-    }).then((updatedTask) => {
-      setTasks(tasks.map((task) => (task.id === id ? updatedTask : task)));
-    });
+    })
+      .then((updatedTask) => {
+        setTasks((currentTasks) =>
+          currentTasks.map((task) => (task.id === id ? updatedTask : task)),
+        );
+      })
+      .catch(() => {
+        setError("Failed to update task.");
+      });
   }
 
-  // Displays a loading message while tasks are being fetched
+  // Displays loading message while tasks are being fetched
   if (isLoading) {
     return <p>Loading tasks...</p>;
   }
 
-  // Displays an error message if the tasks could not be loaded
+  // Displays error message if tasks could not be loaded
   if (error) {
     return <p>{error}</p>;
   }
@@ -92,7 +110,6 @@ function KanbanBoard() {
     <section className="board">
       <h2>My Board</h2>
 
-      {/* Passes the add task function to TaskForm */}
       <TaskForm onAddTask={handleAddTask} />
 
       <div className="kanban-columns">

@@ -1,24 +1,23 @@
 import { useState } from "react";
 import type { Task } from "../types/Task";
 
-// onAddTask must be a function that receives a Task object
+// Defines function that TaskForm receives from its parent component
 interface TaskFormProps {
   onAddTask: (task: Task) => void;
 }
+// Handles form for creating new task and stores entered values in state
 function TaskForm({ onAddTask }: TaskFormProps) {
-  // Stores and updates the text input values
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  // Stores and updates the selected category and priority
   const [category, setCategory] = useState<Task["category"]>("content");
   const [priority, setPriority] = useState<Task["priority"]>("medium");
-  // Stores and updates the selected due date
   const [dueDate, setDueDate] = useState("");
 
-  // Handles the form submit event and prevents the browser from reloading the page
+  // Handles form submit event and prevents browser from reloading page
   function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    // Creates Task object from current form values
     const newTask: Task = {
       id: Date.now(),
       title: title,
@@ -29,10 +28,10 @@ function TaskForm({ onAddTask }: TaskFormProps) {
       dueDate: dueDate,
     };
 
-    // Passes the new task to the parent component
+    // Passes new task to parent component
     onAddTask(newTask);
 
-    // Resets the form after the task has been created
+    // Resets form after task has been created
     setTitle("");
     setDescription("");
     setCategory("content");
@@ -42,13 +41,10 @@ function TaskForm({ onAddTask }: TaskFormProps) {
 
   return (
     <form className="task-form" onSubmit={handleSubmit}>
-      {/* Calls handleSubmit when the form is submitted */}
       <h3>Add New Task</h3>
 
       <div className="form-field">
-        {/* Connects the label to the input field for accessibility */}
         <label htmlFor="title">Title</label>
-        {/* Connects the input value to state and updates it when the user types */}
         <input
           id="title"
           type="text"
@@ -70,18 +66,17 @@ function TaskForm({ onAddTask }: TaskFormProps) {
       </div>
 
       <div className="form-field">
-        {/* Lets the user select one of the allowed task categories */}
         <label htmlFor="category">Category</label>
 
         <select
           id="category"
           name="category"
           value={category}
+          // Tells TypeScript the selected value is one of the allowed Task categories
           onChange={(event) =>
             setCategory(event.target.value as Task["category"])
           }
         >
-          {" "}
           <option value="content">Content</option>
           <option value="ecommerce">E-commerce</option>
           <option value="marketing">Marketing</option>
@@ -99,7 +94,6 @@ function TaskForm({ onAddTask }: TaskFormProps) {
             setPriority(event.target.value as Task["priority"])
           }
         >
-          {" "}
           <option value="low">Low</option>
           <option value="medium">Medium</option>
           <option value="high">High</option>
@@ -107,7 +101,6 @@ function TaskForm({ onAddTask }: TaskFormProps) {
       </div>
 
       <div className="form-field">
-        {/* Lets the user select a due date from the browser's date picker */}
         <label htmlFor="dueDate">Due Date</label>
         <input
           id="dueDate"
@@ -118,7 +111,6 @@ function TaskForm({ onAddTask }: TaskFormProps) {
         />
       </div>
 
-      {/* Submits the form to create a new task */}
       <button className="create-task-button" type="submit">
         Create Task
       </button>

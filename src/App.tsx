@@ -13,7 +13,7 @@ function App() {
         <p>© 2026 Content Flow · Created by Cecilia Marberg</p>
       </footer>
     </>
-  )
+  );
 }
 
 export default App;
