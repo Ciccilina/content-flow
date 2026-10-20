@@ -10,7 +10,9 @@ app.use(cors());
 // Allows server to read JSON data sent from frontend
 app.use(express.json());
 
-const PORT = 3000;
+// Uses port provided by hosting service if backend is deployed
+// Otherwise runs local backend on port 3000
+const PORT = process.env.PORT || 3000;
 
 // Reads saved tasks from JSON file
 const tasksData = fs.readFileSync("./tasks.json", "utf-8");

@@ -71,7 +71,7 @@ Open a terminal and navigate to the server folder:
 ```bash
 cd server
 npm install
-node server.js
+npm start
 ```
 
 The backend runs on:
@@ -117,4 +117,8 @@ npm run build
 ```
 ## Deployment
 
-Deployment information will be added after the application has been published.
+The frontend is deployed with Netlify:
+
+https://content-flow-c-marberg.netlify.app
+
+The backend runs locally on port 3000.
